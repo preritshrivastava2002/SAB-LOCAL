@@ -103,6 +103,9 @@
 						    		<form  action="/filtershop" method="post">
 							    		<div class="px-4">
 								    		<input type="hidden" name="shopname" value="<%=data[i].shopname%>">
+											<input type="hidden" name="pincode" value="<%=data[i].pincode%>">
+											<input type="hidden" name="area" value="<%=data[i].area%>">
+											<input type="hidden" name="items" value="<%=data[i].shopitems%>">
 	                                        <h3><%= data[i].shopname %></h3>
 	                                        <div class="mb-3">
 	                                            <span><a href="#" class="mr-2"></a><b>Current Customer Count</b>: <%=data[i].items.length%></span>

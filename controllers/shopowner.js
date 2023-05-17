@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongoose');
 const Shopowner = require('../models/Shopowner');
 const fast2sms = require('fast-two-sms');
 
@@ -154,12 +155,18 @@ exports.filterArea = async(req,res)=>{
 }
 
 exports.filterShop = async(req,res)=>{
+    // console.log(req.body);
+    // const _id = req.body.id;
+    // console.log(_id);
+    // const result = Shopowner.findOne({"_id" : req.body.id});
+    // console.log(result.ownername);
+    console.log(req.body.items);
     Shopowner.find({pincode:req.body.pincode,area:req.body.area,shopname:req.body.shopname},function(err,data)
     {
         if(err){
             process.exit(1);
         }
-        res.render('shopsearch',{data:data,user:req.user});
+        res.render('shopsearch',{data:data,user:req.user, shopitem : [req.body.items]});
       })
 }
 
@@ -187,7 +194,7 @@ exports.addQueuePage = async(req,res)=>{
             res.render('shopsearch',{   
                 data:data,
                 errors,
-                user:req.user});
+                user:req.user, shopitem : [req.body.items]});
         });
     }
     else{
@@ -222,7 +229,7 @@ SAB LOCAL` , numbers: [req.body.phonenumber]});
 Regards
 SAB LOCAL` , numbers: [req.body.phonenumber]});
                         }
-                        res.render('shopsearch',{data:data,user:req.user});
+                        res.render('shopsearch',{data:data,user:req.user, shopitem : [req.body.items]});
                     }
                     catch(err) {
                         console.log(err);
@@ -232,6 +239,22 @@ SAB LOCAL` , numbers: [req.body.phonenumber]});
             }
         });
     }
+}
+
+
+exports.addItem = async(req,res)=>{
+    console.log(req.body);
+    // Shopowner.findOneAndUpdate({pincode:req.body.pincode,area:req.body.area,shopname:req.body.shopname},
+    //     {
+    //         $set: {shopitems:[req.body.item]}
+    //     },
+    //     {new: true}
+    // )
+    const userPost = await Shopowner.findOneAndUpdate({pincode:req.body.pincode,area:req.body.area,shopname:req.body.shopname},{
+        $addToSet:{'shopitems':[req.body.item]
+        }
+    });
+    res.redirect('/');
 }
 
 exports.editAbout = async(req,res)=>{

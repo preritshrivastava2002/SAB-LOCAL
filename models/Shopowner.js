@@ -13,6 +13,7 @@ const ShopownerSchema = new Schema({
    area: { type: String, required: true , uppercase: true},
    phoneNumbers: { type: Array, default: [] },
    items: { type: Array, default: [] },
+   shopitems: { type: Array, default: [] },
 });
 
 const Shopowner = mongoose.model('Shopowner',ShopownerSchema);

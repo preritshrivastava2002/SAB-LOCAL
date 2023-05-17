@@ -80,6 +80,7 @@
 						<input type="hidden" name="shopname" value="<%=data[0].shopname%>">
 						<input type="hidden" name="pincode" value="<%=data[0].pincode%>">
 						<input type="hidden" name="area" value="<%=data[0].area%>">
+						<input type="hidden" name="items" value="<%=data[0].shopitems%>">
 						<div class="row uniform 50%">
 							<div class="6u 12u$(xsmall)">
 								<input type="tel" name="phonenumber" id="demo-name" value="" placeholder="Enter 10 digit mobile number without country code" />
@@ -97,7 +98,12 @@
 								<input id="butt" type="submit" value="Book Your Number">
 							</ul>
 						</div>
+						<h2>ITEMS</h2>
+						<% for(let i=0;i<shopitem.length;i++){ %>
+								<li><%= shopitem[i] %></li>
+						<%}%>
 					</form>
+
 				</section>
             </div>
 		</section>

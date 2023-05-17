@@ -101,7 +101,7 @@
 							</ul>
 						</div>
 					</form>
-					<br>
+					<br> 
 					<ul class="alt">
 						<%for(let i=0;i<data[0].items.length;i++){%>
 			                <li><p><%=i+1%>. Customer Phone No: <b><%=data[0].phoneNumbers[i]%></b></p></li>
@@ -111,6 +111,23 @@
 							</div>
 						<%}%>
 					</ul>
+
+					<form method="post" action="/additem">
+						<input type="hidden" name="shopname" value="<%=data[0].shopname%>">
+						<input type="hidden" name="pincode" value="<%=data[0].pincode%>">
+						<input type="hidden" name="area" value="<%=data[0].area%>">
+						<div class="field">
+							<label for="item">Items</label>
+							<textarea name="item" id="item" rows="1" placeholder="Add items"></textarea>
+						</div>
+						<br>
+						<div class="3u 6u(small) 12u$(xsmall)">
+							<ul class="actions vertical">
+								<input(type="hidden", name="_method", value="PUT")>
+								<input id="butt" type="submit" value="Add">
+							</ul>
+						</div>
+					</form>
                 </section>
             </div>
         </section>

@@ -6,7 +6,7 @@ let urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const {forwardAuthenticated, ensureAuthenticated } = require('../controllers/auth');
 const {formRegister, formLogin, logout} = require("../controllers/users"); 
-const {formAddShop, myShop, filterPincode, filterArea, filterShop, addQueuePage, editAbout, reduceCount} = require("../controllers/shopowner");
+const {formAddShop, myShop, addItem, filterPincode, filterArea, filterShop, addQueuePage, editAbout, reduceCount} = require("../controllers/shopowner");
 const {formDonate} = require("../controllers/donation")
 const {contact} = require('../controllers/contact');
 
@@ -64,7 +64,7 @@ router.post('/filtershop', filterShop);
 
 // Add Customer in Queue
 router.post('/addqueuepage',urlencodedParser, ensureAuthenticated , addQueuePage);
-
+router.post('/additem',urlencodedParser, addItem);
 // Edit Shop About 
 router.post('/editabout',urlencodedParser, editAbout);
 
